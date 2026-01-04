@@ -1,0 +1,40 @@
+`#!/usr/bin/env python3` 叫做 **shebang（也叫 hashbang）**，只在 **Unix/Linux/macOS** 等类 POSIX 系统里有效；  
+Windows **完全无视**这一行，写不写都一样。
+
+---
+
+### 1. 它到底是干嘛的？
+在 Linux/macOS 上，把脚本加上可执行权限：
+```bash
+chmod +x myscript.py
+```
+然后直接运行：
+```bash
+./myscript.py
+```
+操作系统会读取文件头两个字节：`#!`，接着把**整行当作解释器路径**去启动。  
+`#!/usr/bin/env python3` 的意思就是：  
+“去 `$PATH` 里找第一个叫 `python3` 的可执行文件，拿它来解释本脚本”。
+
+---
+
+### 2. Windows 的情况
+- Windows 不是靠 shebang 找解释器，而是根据**文件关联**（`.py` → `python.exe`）。  
+- 所以双击或在 cmd/PowerShell 里输入：
+  ```cmd
+  python myscript.py
+  ```
+  时，**这一行被当成普通注释**，毫无作用。  
+- 即使你用 Git-Bash/MSYS2/Cygwin 等模拟环境，真正干活的是 Windows 内核，shebang 依旧不会被解析。
+
+---
+
+### 3. 那 Windows 需要写吗？
+- **纯 Windows 开发**：可写可不写，图个跨平台一致性就留着。  
+- **代码要发到 Linux 服务器/给 macOS 同事**：强烈建议保留，这样对方直接 `chmod +x` 就能 `./script.py` 运行。
+
+---
+
+### 一句话总结
+shebang 在 Linux/macOS 下让脚本“自己找解释器”，Windows 当它是注释；  
+只要你的代码**有可能**跑到类 Unix 平台，就顺手写上，反正没坏处。

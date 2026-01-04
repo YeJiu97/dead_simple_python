@@ -1,0 +1,6 @@
+Python官网：https://www.python.org/
+
+linux可以运行：
+sudo apt install python3 python3-pip python3-venv
+
+可以通过源代码构建python，但是比较复杂

@@ -1,0 +1,18 @@
+# -*- coding: latin-1 -*- 用来告诉 Python 解释器：
+“本源文件是用 latin-1（ISO-8859-1） 编码保存的，读取时请按这种编码把字节流解码成 Unicode，否则字符串字面量里出现非 ASCII 字符时会报错。”
+
+
+为什么需要这行？
+Python 3 默认把源文件当成 UTF-8 解析。
+如果你的文件实际保存成 latin-1，而代码里又写了 非 ASCII 字符（如 é、ü、ñ、© 等），解释器按 UTF-8 解码就会抛出
+SyntaxError: Non-UTF-8 code starting with '\xe9'
+这时就得显式声明真实编码。
+
+别的写法：
+
+# -*- coding: latin-1 -*-        最经典的 Emacs 风格
+# coding=latin-1                 极简风格
+# coding: latin-1                冒号风格
+# vim: set fileencoding=latin-1 : Vim 风格
+# -*- Encoding: latin-1 -*-      大小写随意
+# coding=iso-8859-1              别名也行

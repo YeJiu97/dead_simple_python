@@ -1,0 +1,13 @@
+python -m venv venv
+
+demo/
+└─ venv/
+   ├─ Scripts/     ← Windows 可执行文件都在这里
+   ├─ Lib/
+   └─ pyvenv.cfg
+
+venv\Scripts\activate.bat
+
+deactivate
+
+在虚拟环境中安装三方库会安装到虚拟环境中
